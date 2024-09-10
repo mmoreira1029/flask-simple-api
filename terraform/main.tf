@@ -213,3 +213,35 @@ output "cert-manager-acmesolver" {
   description = "The URI of the cert-cert-manager-acmesolver-cainjector ECR repository"
   value       = aws_ecr_repository.cert-manager-acmesolver.repository_url
 }
+
+resource "aws_dynamodb_table" "users_table" {
+  name         = "Users"
+  billing_mode = "PAY_PER_REQUEST"
+
+  hash_key     = "name"
+
+  attribute {
+    name = "name"
+    type = "S"
+  }
+
+  tags = {
+    Name = "Users Table"
+  }
+}
+
+resource "aws_dynamodb_table" "groups_table" {
+  name         = "Groups"
+  billing_mode = "PAY_PER_REQUEST"
+
+  hash_key     = "name"
+
+  attribute {
+    name = "name"
+    type = "S"
+  }
+
+  tags = {
+    Name = "Groups Table"
+  }
+}
