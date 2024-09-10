@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: wiki-pv
+  name: flask-api-pv
 spec:
   capacity:
     storage: 1Gi
@@ -17,7 +17,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: wiki-pvc
+  name: flask-api-pvc
 spec:
   accessModes:
     - ReadWriteOnce
@@ -25,4 +25,4 @@ spec:
     requests:
       storage: 1Gi
   storageClassName: manual
-  volumeName: wiki-pv
+  volumeName: flask-api-pv

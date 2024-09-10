@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wiki-engine
+  name: flask-api
   labels:
-    app: wiki-engine
+    app: flask-api
 spec:
   strategy:
     type: RollingUpdate
@@ -13,15 +13,15 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: wiki-engine
+      app: flask-api
   template:
     metadata:
       labels:
-        app: wiki-engine
+        app: flask-api
     spec:
       containers:
-        - name: wiki-engine
-          image: <ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/mx-wiki-engine:latest
+        - name: flask-api
+          image: <ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/mx-flask-api:latest
           resources: 
             requests:
               memory: "512Mi"
@@ -32,9 +32,9 @@ spec:
           ports:
             - containerPort: 8080
           volumeMounts:
-            - name: wiki-data
+            - name: flask-api-data
               mountPath: /data
       volumes:
-        - name: wiki-data
+        - name: flask-api-data
           persistentVolumeClaim:
-            claimName: wiki-pvc
+            claimName: flask-api-pvc
