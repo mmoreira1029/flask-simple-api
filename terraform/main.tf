@@ -109,8 +109,8 @@ resource "aws_ecr_repository" "aws-load-balancer-controller" {
   }
 }
 
-resource "aws_ecr_repository" "mx-wiki-engine" {
-  name = "mx-wiki-engine"
+resource "aws_ecr_repository" "flask-api" {
+  name = "flask-api"
 
   image_tag_mutability = "MUTABLE"
   image_scanning_configuration {
@@ -120,7 +120,7 @@ resource "aws_ecr_repository" "mx-wiki-engine" {
     prevent_destroy = false
   }
   tags = {
-    Name = "mx-wiki-engine"
+    Name = "flask-api"
   }
 }
 
@@ -185,13 +185,13 @@ resource "aws_ecr_repository" "cert-manager-acmesolver" {
 }
 
 output "aws-load-balancer-controller" {
-  description = "The URI of the cert-manager-webhook ECR repository"
+  description = "The URI of the aws-load-balancer-controller ECR repository"
   value       = aws_ecr_repository.aws-load-balancer-controller.repository_url
 }
 
-output "mx-wiki-engine_uri" {
-  description = "The URI of the cert-manager-webhook ECR repository"
-  value       = aws_ecr_repository.mx-wiki-engine.repository_url
+output "mflask-api_uri" {
+  description = "The URI of the flask-api_uri ECR repository"
+  value       = aws_ecr_repository.flask-api.repository_url
 }
 
 output "cert_manager_webhook_uri" {
