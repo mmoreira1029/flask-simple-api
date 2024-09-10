@@ -5,7 +5,7 @@ metadata:
   annotations:
       alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/target-type: instance
-      alb.ingress.kubernetes.io/load-balancer-name: "mendix-flask-api"
+      alb.ingress.kubernetes.io/load-balancer-name: "flask-api-alb"
 spec:
   ingressClassName: alb
   rules:
