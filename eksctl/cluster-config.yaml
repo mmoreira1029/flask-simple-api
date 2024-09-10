@@ -2,7 +2,7 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: mx-wiki-engine
+  name: flask-api
   region: eu-north-1
 
 nodeGroups:

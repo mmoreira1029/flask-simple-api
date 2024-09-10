@@ -875,9 +875,9 @@ spec:
     spec:
       containers:
       - args:
-        - --cluster-name=mx-wiki-engine
+        - --cluster-name=flask-api
         - --ingress-class=alb
-        image: 456377314901.dkr.ecr.eu-north-1.amazonaws.com/aws-load-balancer-controller:v2.7.2
+        image: <ACCOUNT_ID>.dkr.ecr.eu-north-1.amazonaws.com/aws-load-balancer-controller:v2.7.2
         livenessProbe:
           failureThreshold: 2
           httpGet:
