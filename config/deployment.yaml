@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wiki-engine
+  labels:
+    app: wiki-engine
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  replicas: 2
+  selector:
+    matchLabels:
+      app: wiki-engine
+  template:
+    metadata:
+      labels:
+        app: wiki-engine
+    spec:
+      containers:
+        - name: wiki-engine
+          image: <ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/mx-wiki-engine:latest
+          resources: 
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: wiki-data
+              mountPath: /data
+      volumes:
+        - name: wiki-data
+          persistentVolumeClaim:
+            claimName: wiki-pvc

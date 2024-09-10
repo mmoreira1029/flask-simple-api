@@ -1,0 +1,30 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: mx-wiki-engine
+  region: eu-north-1
+
+nodeGroups:
+  - name: ng-1
+    instanceType: m5.large
+    desiredCapacity: 2
+  - name: ng-2
+    instanceType: m5.large
+    desiredCapacity: 2
+
+addons:
+  - name: vpc-cni
+  - name: coredns
+  - name: kube-proxy
+
+identityProviders:
+  - name: usergroup-1
+    issuerURL: https://cognito-idp.eu-north-1.amazonaws.com/eu-north-1_Mx8EdAQ20/
+    clientID: kubernetes
+    usernameClaim: email
+    type: oidc
+
+iam:
+  withOIDC: true
+
